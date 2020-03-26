@@ -1,4 +1,6 @@
 #!/bin/bash
+
+rm -rf /root/9Hits/ 2>/dev/null
 mkdir /root/9Hits/
 cd /root/9Hits/
 if [[ $EUID -ne 0 ]]; then
@@ -248,9 +250,8 @@ $cronvar
 58 23 * * * /root/9Hits/reboot.sh
 EOFSS
     cd /root
-    mv 9Hits-AutoInstall/* /root/9Hits/
+    cp 9Hits-AutoInstall/* /root/9Hits/
     cd /root/9Hits/
-    crontab crontab
-    chmod 777 -R /root/9Hits/
-    exit
+    crontab $cronfile
+    chmod 744 -R /root/9Hits/
 fi
