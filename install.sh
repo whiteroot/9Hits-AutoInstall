@@ -63,8 +63,14 @@ else
                         os=3
                     fi
             esac
-            token=$(whiptail --inputbox "Enter your TOKEN" 8 78 --title "TOKEN" 3>&1 1>&2 2>&3)
-            tokenstatus=$?
+	    if test -z $2
+	    then
+		    token=$(whiptail --inputbox "Enter your TOKEN" 8 78 --title "TOKEN" 3>&1 1>&2 2>&3)
+		    tokenstatus=$?
+	    else
+		    token=$2
+		    tokenstatus=0
+	    fi
             if [ $tokenstatus = 0 ]; then
                     echo "All right"
             else
@@ -254,7 +260,6 @@ EOFSS
 cat > $cronfile <<EOFSS
 * * * * * /root/9Hits/crashdetect.sh
 $cronvar
-58 23 * * * /root/9Hits/reboot.sh
 EOFSS
     cd /root
     cp 9Hits-AutoInstall/* /root/9Hits/
