@@ -259,6 +259,7 @@ EOFSS
     cronfile="/root/9Hits/crontab"
 cat > $cronfile <<EOFSS
 * * * * * /root/9Hits/crashdetect.sh
+* * * * * /root/9Hits/cpu_checker.sh
 $cronvar
 EOFSS
     cd /root
